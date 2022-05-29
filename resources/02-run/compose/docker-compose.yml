@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  app:
+    image: 9tmark/avly-trader:latest
+    container_name: 'mt5001'
+    restart: unless-stopped
+    init: true
+    environment:
+      - cap-add=SYS_PTRACE
+    ports:
+      - 55900:5900
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      # - <path to logs on host>:/var/log/avly-trader
+      # This line is required (see README):
+      # - <path to third-party on host>:/opt/third-party
